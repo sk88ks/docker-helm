@@ -12,7 +12,11 @@ RUN curl -L http://storage.googleapis.com/kubernetes-helm/${FILENAME} | tar zxv 
 
 # The image we keep
 FROM alpine:3.6
+
 ENV CLOUD_SDK_VERSION 183.0.0
+ENV GCS_PLUGIN_VERSION v0.1.1
+
+RUN apk add --update --no-cache git ca-certificates
 
 # Add gcloud to use gcs chart repository
 ENV PATH /google-cloud-sdk/bin:$PATH
@@ -34,8 +38,6 @@ RUN apk --no-cache add \
     gcloud --version
 
 VOLUME ["/root/.config"]
-
-RUN apk add --update --no-cache git ca-certificates
 
 COPY --from=helm /tmp/linux-amd64/helm /bin/helm
 
