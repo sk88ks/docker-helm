@@ -2,7 +2,7 @@ FROM alpine:3.6 as helm
 
 RUN apk add --update --no-cache ca-certificates git
 
-ARG VERSION=v2.7.2
+ARG VERSION=v2.8.0
 ARG FILENAME=helm-${VERSION}-linux-amd64.tar.gz
 
 WORKDIR /
